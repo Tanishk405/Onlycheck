@@ -1,0 +1,162 @@
+/* .title-card{
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.title-card h2{
+    margin-bottom: 8px;
+}
+
+.card-list{
+    display: flex;
+    gap: 10px;
+    overflow-x: scroll;
+}
+
+.card-list::-webkit-scrollbar{
+    display: none;
+}
+
+.card-list img{
+    width: 240px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+.card-list .card{
+    position: relative;
+}
+
+.card-list .card p{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+} */
+
+
+
+
+
+
+
+.title-card a{
+    text-decoration: none;
+    color: white !important;
+}
+
+
+
+
+.title-card {
+  margin: 2rem 4%;
+  border: none;
+}
+
+.card-list {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  scrollbar-width: none; /* Firefox */
+}
+
+.card-list::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.card {
+  flex: 0 0 auto;
+  width: 250px;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-image-container {
+  aspect-ratio: 16/9; /* Force 16:9 ratio */
+  border-radius: 4px;
+
+  overflow: hidden;
+}
+
+.card-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}
+
+.card p {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem;
+  margin: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card:hover p {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .card {
+    width: 180px;
+  }
+
+  .card p {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 150px;
+  }
+
+  .title-card h2 {
+    font-size: 1rem;
+  }
+}
+
+.heroCaption {
+  padding-bottom: 100px;
+}
+
+
+
+.topCards {
+  margin-top: 80px;
+  position: relative;
+  z-index: 1;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,293 @@
+
+.Login_bg{
+    height: 125vh;
+    background-image: linear-gradient(#0000007e, #0000007e), url(../../assets/background_banner.jpg);
+    padding:20px 8%;
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat; 
+}
+
+
+.login-logo{
+    width: 150px;
+
+}
+
+.login-form{
+    width: 100%;
+    max-width: 450px;
+    background: rgba(0, 0, 0, 0.75);
+    padding: 60px;
+    border-radius: 4px;
+    margin: auto;
+    height: 100vh;
+}
+
+.login-form h1{
+    font-size: 37px !important;
+    font-weight: 700 !important;
+    margin-bottom: 28px;
+}
+
+.login-form input{
+    width: 100%;
+    height: 50px;
+    background: #0f0f0f;
+    color: white;
+    margin: 12px 0;
+    border: 1px solid grey;
+    outline: 0;
+    border-radius: 4px;
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 500;
+
+    
+}
+
+
+
+
+
+
+.login-form input::placeholder{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+.login-form button{
+    width: 100%;
+    border: 0;
+    outline: 0;
+    padding: 10px;
+    background: #e50914;
+    color: white;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.form-help{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #b3b3b3;
+    font-size: 13px;
+
+}
+
+.remember{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.remember input{
+    width: 18px;
+    height: 18px;
+}
+
+
+
+.form-switch{
+    margin-top: 40px;
+    color: #737373;
+}
+
+.form-switch span{
+    margin-left: 6px;
+    color: #fff;
+    font-weight: 500;
+    cursor: pointer;
+
+}
+
+
+
+.login-form form input{
+    padding: 28px;
+    text-align: left;
+
+  }
+
+
+
+
+@media (max-width: 961px){
+  .login-logo {
+  width: 100px;
+  align-self: flex-start;
+}
+
+}
+
+
+
+
+.Login_bg {
+  min-height: 100vh;
+  background-image: linear-gradient(#0000007e, #0000007e), url(../../assets/background_banner.jpg);
+  padding: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.login-form {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 20px;
+  border-radius: 4px;
+  margin: 20px auto;
+}
+
+.login-form h1 {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.login-form input {
+  width: 100%;
+  height: 40px;
+  background: #0f0f0f;
+  color: white;
+  margin: 10px 0;
+  border: 1px solid grey;
+  outline: 0;
+  border-radius: 4px;
+  padding: 12px 15px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.login-form input::placeholder {
+  font-size: 14px;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.form-help {
+  font-size: 12px;
+}
+
+.remember input {
+  width: 16px;
+  height: 16px;
+}
+
+.form-switch {
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+
+
+
+
+
+
+.fa{
+  position: relative;
+  top: -50px;
+  z-index: 9;
+  left: 90%;
+  cursor: pointer;
+}
+
+/* Medium screens and up */
+@media (min-width: 768px) {
+  .Login_bg {
+    padding: 20px 8%;
+  }
+  
+  /* .login-logo {
+    width: 150px;
+  } */
+  
+  .login-form {
+    padding: 40px;
+    max-width: 450px;
+  }
+  
+  .login-form h1 {
+    font-size: 32px;
+    margin-bottom: 28px;
+  }
+  
+  .login-form input {
+    height: 50px;
+    padding: 16px 20px;
+    font-size: 16px;
+  }
+  
+  .login-form input::placeholder {
+    font-size: 16px;
+  }
+  
+  .login-form button {
+    font-size: 16px;
+  }
+  
+  .form-help {
+    font-size: 13px;
+  }
+  
+  .form-switch {
+    font-size: 16px;
+  }
+}
+
+
+
+
+
+.login-form form input::placeholder {
+  font-size: 17px; /* Increase this value as needed */
+  font-weight: 500; /* Optional: make it bolder */
+  color: #ccc; /* Optional: lighter or darker */
+}
+
+
+
+
+
+@media (max-width: 600px) {
+  .Login_bg {
+    background-color: #000; /* Solid black like Netflix */
+    background-image: none; /* Remove image on small screen */
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  .login-form form input{
+    padding: 30px;
+    text-align: left;
+
+  }
+
+  .login-logo{
+    width: 100px;
+    margin-left: 30px;
+    margin-top: 20px;
+  }
+
+  .login-form {
+    background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent like Netflix */
+    width: 100%;
+    padding: 30px 5%;
+    border-radius: 0;
+  }
+}
