@@ -1,7 +1,7 @@
 {
   "name": "my-react-app",
+  "home": "https://github.com/Tanishk405/Onlycheck/",
   "private": true,
-  "homepage": "https://Tanishk405.github.io/Netflix-clone",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -9,6 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "predeploy": "npm run build ",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

@@ -5,31 +5,40 @@
 // import LandingPage from './pages/LandingPage/Landing.jsx';
 // import Login from './pages/Login/Login.jsx';
 
-import React, { useEffect } from 'react'
-import Home from "./pages/Home/Home"
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
-import LandingPage from "./pages/LandingPage/Landing"
-import Login from "./pages/Login/Login"
-import Player from "./pages/Player/Player"
-import { onAuthStateChanged } from 'firebase/auth'
-import { auth } from './firebase'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
+import React, { useEffect, useState } from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebase';
+
+import Home from "./pages/Home/Home";
+import LandingPage from "./pages/LandingPage/Landing";
+import Login from "./pages/Login/Login";
+import Player from "./pages/Player/Player";
+
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        if (location.pathname === '/login' || location.pathname === '/beforepage') {
-          navigate('/');
+      setUser(user);
+
+      // Redirect logic
+      if (!user) {
+        if (location.pathname === '/home' || location.pathname.startsWith('/player')) {
+          navigate('/login');
         }
       } else {
-        if (location.pathname === '/') {
-          navigate('/beforepage');
+        if (location.pathname === '/login') {
+          navigate('/home');
         }
       }
+
+      setCheckingAuth(false);
     });
 
     return () => unsubscribe();
@@ -39,6 +48,8 @@ function App() {
     navigate(`/player/movie/${result.id}`);
   };
 
+  if (checkingAuth) return null; // Or show loading...
+
   return (
     <HelmetProvider>
       <Helmet>
@@ -46,9 +57,9 @@ function App() {
       </Helmet>
       <div className='App'>
         <Routes>
-          <Route path='/' element={<Home onSearch={handleSearch} />} />
+          <Route path='/' element={<LandingPage />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/beforepage' element={<LandingPage />} />
+          <Route path='/home' element={<Home onSearch={handleSearch} />} />
           <Route path='/player/:type/:id' element={<Player />} />
         </Routes>
       </div>

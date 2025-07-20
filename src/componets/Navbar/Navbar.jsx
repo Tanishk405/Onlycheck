@@ -488,6 +488,22 @@ function Navbar({ onSearch }) {
     }
   };
 
+
+
+
+const handleLogout = async () => {
+  const confirmLogout = window.confirm("Are you sure you want to logout?");
+  if (!confirmLogout) return;
+
+  try {
+    await logout();
+    navigate("/"); // ✅ redirect to Landing Page
+  } catch (err) {
+    console.error("Logout failed", err);
+  }
+};
+
+
   
 
   return (
@@ -588,7 +604,7 @@ function Navbar({ onSearch }) {
             <img src={caret_icon} alt="Menu" className={styles.menuIcon} />
           </div>
           <div className={styles.dropdownMenu}>
-            <div className={styles.dropdownItem} onClick={() => logout()}>
+            <div className={styles.dropdownItem} onClick={(handleLogout)}>
               Sign Out of Netflix
             </div>
           </div>

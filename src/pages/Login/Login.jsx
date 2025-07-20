@@ -324,6 +324,149 @@
 
 
 
+// import React, { useState } from 'react';
+// import './Login.css';
+// import logo from '../../assets/logo.png';
+// import LoginFooter from './LoginFooter/LoginFooter';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+// import { login, signUp } from '../../firebase';
+// import { useNavigate } from 'react-router-dom';
+
+// function Login() {
+//   const [Signstate, setSignState] = useState('Sign In');
+//   const [name, setName] = useState('');
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [eye, onEye] = useState(true);
+//   const navigate = useNavigate();
+
+//   const user_auth = async (event) => {
+//     event.preventDefault();
+
+//     if (!email || !password || (Signstate === 'Sign Up' && !name)) {
+//       toast.warn('Please fill in all required fields');
+//       return;
+//     }
+
+//     if (Signstate === 'Sign In') {
+//       try {
+//         await login(email, password);
+//         toast.success('Login successful!');
+//         setTimeout(() => navigate('/home'), 1500); // delay redirect so toast is visible
+//       } catch (err) {
+//         toast.error('User not found. Switching to Sign Up...');
+//         setSignState('Sign Up');
+//       }
+//     } else {
+//       try {
+//         await signUp(name, email, password);
+//         toast.success('Signup successful!');
+//         setTimeout(() => navigate('/home'), 1500);
+//       } catch (err) {
+//         toast.error('Signup failed. Try again.');
+//       }
+//     }
+//   };
+
+//   return (
+//     <div className='Login_bg'>
+//       <img src={logo} className='login-logo' alt='Netflix Logo' />
+
+//       <div className='login-form'>
+//         <h1>{Signstate}</h1>
+//         <form>
+//           {Signstate === 'Sign Up' && (
+//             <input
+//               value={name}
+//               onChange={(e) => setName(e.target.value)}
+//               type='text'
+//               placeholder='Your name'
+//             />
+//           )}
+
+//           <input
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)}
+//             type='email'
+//             placeholder='Email'
+//           />
+
+//           <div className='password-wrapper'>
+//             <input
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//               type={eye ? 'password' : 'text'}
+//               placeholder='Password'
+//             />
+//             <i
+//               className={`fa fa-solid ${eye ? 'fa-eye-slash' : 'fa-eye'}`}
+//               onClick={() => onEye(!eye)}
+//             ></i>
+//           </div>
+
+//           <button onClick={user_auth} type='submit'>
+//             {Signstate === 'Sign In' ? 'Sign In' : 'Sign Up'}
+//           </button>
+
+//           <div className='form-help'>
+//             <div className='remember'>
+//               <input type='checkbox' id='rememberMe' />
+//               <label htmlFor='rememberMe'>Remember Me</label>
+//             </div>
+//             <p>Need Help?</p>
+//           </div>
+//         </form>
+
+//         <div className='form-switch'>
+//           {Signstate === 'Sign In' ? (
+//             <p>
+//               New to Netflix?
+//               <span onClick={() => setSignState('Sign Up')}> Sign Up Now</span>
+//             </p>
+//           ) : (
+//             <p>
+//               Already have an account?
+//               <span onClick={() => setSignState('Sign In')}> Sign In Now</span>
+//             </p>
+//           )}
+//         </div>
+//       </div>
+
+//       <LoginFooter />
+//       <ToastContainer position='top-center' autoClose={3000} />
+//     </div>
+//   );
+// }
+
+// export default Login;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState } from 'react';
 import './Login.css';
 import logo from '../../assets/logo.png';
@@ -334,36 +477,35 @@ import { login, signUp } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [Signstate, setSignState] = useState('Sign In');
+  const [formType, setFormType] = useState('Sign In');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [eye, onEye] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  const user_auth = async (event) => {
+  const handleAuth = async (event) => {
     event.preventDefault();
 
-    if (!email || !password || (Signstate === 'Sign Up' && !name)) {
+    if (!email || !password || (formType === 'Sign Up' && !name)) {
       toast.warn('Please fill in all required fields');
       return;
     }
 
-    if (Signstate === 'Sign In') {
-      try {
+    try {
+      if (formType === 'Sign In') {
         await login(email, password);
         toast.success('Login successful!');
-        setTimeout(() => navigate('/'), 1500); // delay redirect so toast is visible
-      } catch (err) {
-        toast.error('User not found. Switching to Sign Up...');
-        setSignState('Sign Up');
-      }
-    } else {
-      try {
+      } else {
         await signUp(name, email, password);
         toast.success('Signup successful!');
-        setTimeout(() => navigate('/'), 1500);
-      } catch (err) {
+      }
+      setTimeout(() => navigate('/home'), 1500);
+    } catch (err) {
+      if (formType === 'Sign In') {
+        toast.error('User not found. Switching to Sign Up...');
+        setFormType('Sign Up');
+      } else {
         toast.error('Signup failed. Try again.');
       }
     }
@@ -374,9 +516,9 @@ function Login() {
       <img src={logo} className='login-logo' alt='Netflix Logo' />
 
       <div className='login-form'>
-        <h1>{Signstate}</h1>
-        <form>
-          {Signstate === 'Sign Up' && (
+        <h1>{formType}</h1>
+        <form onSubmit={handleAuth}>
+          {formType === 'Sign Up' && (
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -396,17 +538,17 @@ function Login() {
             <input
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              type={eye ? 'password' : 'text'}
+              type={showPassword ? 'text' : 'password'}
               placeholder='Password'
             />
             <i
-              className={`fa fa-solid ${eye ? 'fa-eye-slash' : 'fa-eye'}`}
-              onClick={() => onEye(!eye)}
+              className={`fa-solid ${showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'}`}
+              onClick={() => setShowPassword(!showPassword)}
             ></i>
           </div>
 
-          <button onClick={user_auth} type='submit'>
-            {Signstate === 'Sign In' ? 'Sign In' : 'Sign Up'}
+          <button type='submit'>
+            {formType === 'Sign In' ? 'Sign In' : 'Sign Up'}
           </button>
 
           <div className='form-help'>
@@ -419,15 +561,15 @@ function Login() {
         </form>
 
         <div className='form-switch'>
-          {Signstate === 'Sign In' ? (
+          {formType === 'Sign In' ? (
             <p>
               New to Netflix?
-              <span onClick={() => setSignState('Sign Up')}> Sign Up Now</span>
+              <span onClick={() => setFormType('Sign Up')}> Sign Up Now</span>
             </p>
           ) : (
             <p>
               Already have an account?
-              <span onClick={() => setSignState('Sign In')}> Sign In Now</span>
+              <span onClick={() => setFormType('Sign In')}> Sign In Now</span>
             </p>
           )}
         </div>

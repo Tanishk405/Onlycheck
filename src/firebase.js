@@ -134,8 +134,13 @@ const login = async (email, password) => {
   }
 };
 
-const logout = () => {
-  signOut(auth);
+const logout = async () => {
+  try {
+    await signOut(auth);
+  } catch (error) {
+    console.error("Logout Error:", error);
+    throw error;
+  }
 };
 
 export { auth, db, login, signUp, logout };
